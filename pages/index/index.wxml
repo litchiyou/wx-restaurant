@@ -1,0 +1,81 @@
+<view>
+  <swiper class="swiper-menu" indicator-dots="true" autoplay="true" interval="3000" duration="500">
+    <block wx:for="{{imgUrls}}">
+      <swiper-item class="swiper-imgs">
+        <image src="{{item}}" class="slide-image" />
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+
+<view class="aslide-menu">
+  <scroll-view class="aslide-box" scroll-y="true" scroll-x="false">
+    <view class="{{status==0 ? 'in' : ''}}" data-index="0" bindtap="changeMenu">推荐</view>
+    <view class="{{status==1 ? 'in' : ''}}" data-index="1" bindtap="changeMenu">粤菜</view>
+    <view class="{{status==2 ? 'in' : ''}}" data-index="2" bindtap="changeMenu">汤水</view>
+    <view class="{{status==3 ? 'in' : ''}}" data-index="3" bindtap="changeMenu">套餐</view>
+  </scroll-view>
+  <view class="aslide-content-section">
+    <scroll-view class="aslide-content" scroll-y="false" scroll-x="true" scroll-into-view="{{currentPosition}}" scroll-with-animation="true" bindscrolltolower="scrollBottom">
+    <view id="order0" class="aslide-item">
+        <text class="aslide-item-title">推荐</text>
+        <view wx:if="{{item.orderStatus == 0}}" wx:for="{{menuItems}}" wx:key="{{item.id}}" class="aslide-item-info">
+          <view class="aslide-item-img" bindtap="previewImages">
+            <image src="{{item.image.path}}"></image>
+          </view>
+          <view class="cart-info-container">
+            <text class="food-name">{{item.cookname}}</text>
+            <text class="price">￥{{item.price}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view id="order1" class="aslide-item">
+        <text class="aslide-item-title">粤菜</text>
+        <view wx:if="{{item.orderStatus == 1}}" wx:for="{{menuItems}}" wx:key="{{item.id}}" class="aslide-item-info">
+          <view class="aslide-item-img" bindtap="previewImages">
+            <image src="{{item.image.path}}"></image>
+          </view>
+          <view class="cart-info-container">
+            <text class="food-name">{{item.cookname}}</text>
+            <text class="price">￥{{item.price}}</text>
+            <view class="sub-cart-num">
+              <view class="flex-1">数量:</view>
+              <view class="flex-2">
+                <image bindtap="plus" data-index="{{index}}" class="plus" src="/images/plus_gray.png"></image>
+                <text class="num">{{item.num}}</text>
+                <image bindtap="add" data-index="{{index}}" class="add" src="/images/add_gray.png"></image>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view id="order2" class="aslide-item">
+        <text class="aslide-item-title">汤水</text>
+        <view wx:if="{{item.orderStatus == 2}}" wx:for="{{menuItems}}" wx:key="{{item.id}}" class="aslide-item-info">
+          <view class="aslide-item-img" bindtap="previewImages">
+            <image src="{{item.image.path}}"></image>
+          </view>
+          <view class="cart-info-container">
+            <text class="food-name">{{item.cookname}}</text>
+            <text class="price">￥{{item.price}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view id="order3" class="aslide-item">
+        <text class="aslide-item-title">套餐</text>
+        <view wx:if="{{item.orderStatus == 3}}" wx:for="{{menuItems}}" wx:key="{{item.id}}" class="aslide-item-info">
+          <view class="aslide-item-img" bindtap="previewImages">
+            <image src="{{item.image.path}}"></image>
+          </view>
+          <view class="cart-info-container">
+            <text class="food-name">{{item.cookname}}</text>
+            <text class="price">￥{{item.price}}</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

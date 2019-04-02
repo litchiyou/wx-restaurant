@@ -1,0 +1,148 @@
+page {
+  height: 100%;
+}
+
+.nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 750rpx;
+  height: 72rpx;
+  background-color: #f0f3f8;
+  font-size: 28rpx;
+}
+
+.search-btn {
+  width: 200rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  text-align: center;
+  box-sizing: border-box;
+  border-right: #bbc6d2 1px solid;
+}
+
+.menu-info {
+  display: flex;
+  flex-direction: row;
+  width: 550rpx;
+}
+.search-btn image {
+  width: 43rpx;
+  height: 42rpx;
+  vertical-align: middle;
+}
+.swiper-tab-list {
+  margin: 0 20px;
+  padding: 0 4px;
+  font-size: 12px;
+}
+.active {
+  border-bottom:2px solid #de3120;
+}
+.swiper-box{
+  height: 100%;
+}
+.aslide-menu {
+  font-size: 28rpx;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  height: 100%;
+}
+
+.aslide-menu .aslide-box {
+  height: 100%;
+  width: 200rpx;
+  background-color: #1f2638;
+  text-align: center;
+  color: #fff;
+}
+
+.aslide-box view {
+  height: 90rpx;
+  line-height: 90rpx;
+}
+
+.in {
+  background: #de3120;
+  border-left: 12rpx solid orange; 
+}
+
+.aslide-content{
+  height: 100%;
+  width:550rpx;
+  overflow-x: hidden;
+}
+
+.aslide-item-info{
+  display: flex;
+  flex-direction: row;
+  padding-left: 30rpx;
+}
+.aslide-item-title{
+  height: 60rpx;
+  line-height: 60rpx;
+  padding-left: 30rpx;
+}
+.aslide-item-img image{
+  width:256rpx;
+  height: 170rpx;
+}
+.cart-add{
+  width: 40rpx;
+  height: 40rpx;
+}
+.cart-info-container{
+  display: flex;
+  flex-direction: column;
+  width: 270rpx;
+  align-items: center;
+}
+.price{
+  color:#de3120;
+  margin: 20rpx 0;
+}
+.food-name{
+  font-weight: bold;
+  font-size: 28rpx;
+  margin-top: 10px;
+}
+/*添加菜式*/
+.addmenu_container {
+    width: 100%;
+    margin-bottom: 10px;
+}
+.addmenu_box {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: calc(100% - 20px);
+  height: 60px;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: #efefef;
+  border-radius: 6px;
+}
+.addmenu_box label{
+  font-size: 15px;
+  margin-left: 5px;
+}
+/*添加菜式*/
+.addmenu_save_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: #007aff;
+    border: 1px solid #007aff;
+    box-sizing: border-box;
+    background-color: #ffffff;
+}
+.addmenu_icon_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    width: 100px;
+}

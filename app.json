@@ -1,0 +1,43 @@
+{
+  "pages":[
+    "pages/login/login",
+    "pages/business/business",
+    "pages/index/index",
+    "pages/cart/cart",
+    "pages/user/user",
+    "pages/nopay/nopay"
+  ],
+  "window":{
+    "backgroundTextStyle":"dark",
+    "navigationBarBackgroundColor": "#181E2C",
+    "navigationBarTitleText": "计机小摊",
+    "navigationBarTextStyle":"#FFFFFF"
+  },
+  "plugins": {
+    "sdkPlugin": {
+        "version": "2.0.2",
+        "provider": "wxc6b86e382a1e3294"
+      }
+  },
+  "tabBar": {
+    "backgroundColor": "#181E2C",
+    "color": "#ffffff",
+    "selectedColor": "#de3120",
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "餐厅",
+      "iconPath": "/images/footer_btn_1.png",
+      "selectedIconPath": "/images/footer_btn_1_active.png"
+    },{
+      "pagePath": "pages/cart/cart",
+      "text": "购物车",
+      "iconPath": "/images/footer_btn_2.png",
+      "selectedIconPath": "/images/footer_btn_2_active.png"
+    },{
+      "pagePath": "pages/user/user",
+      "text": "我的",
+      "iconPath": "/images/footer_btn_3.png",
+      "selectedIconPath": "/images/footer_btn_3_active.png"
+    }]
+  }
+}

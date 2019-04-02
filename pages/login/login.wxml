@@ -1,0 +1,20 @@
+<view class="container"> 
+ <view class="login-icon"> 
+ <image class="login-img" src="../../images/1.jpg"></image> 
+ </view> 
+ <view class="login-from"> 
+ 
+ <!--我是商家--> 
+ <button class="businesses" open-type="getUserInfo" bindgetuserinfo="userInfoHandler"> 
+  <image class="image" src="../../images/business.png"></image> 
+  <label class="loginLab">我是商家</label> 
+ </button> 
+ 
+ <!--我是用户--> 
+ <button class="inputView" open-type="getUserInfo" bindgetuserinfo="userInfoHandler"> 
+  <image class="image" src="../../images/people.png"></image> 
+  <label class="loginLab">我是用户</label> 
+ </button> 
+
+ </view> 
+</view> 

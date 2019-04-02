@@ -1,0 +1,160 @@
+<!--头部导航栏-->
+<view class="nav">
+  <view class="search-btn">
+    <image src="/images/search_ico.png"></image>
+  </view>
+  <view class="menu-info">
+    <block wx:for="{{swipertab}}" wx:key="sptab">
+      <view class="swiper-tab-list {{currtab == item.index ? 'active' : ''}}" data-current="{{item.index}}" bindtap="tabSwitch">{{item.name}}</view>
+    </block>
+  </view>
+</view>
+
+<swiper current="{{currtab}}" class="swiper-box" duration="300" bindchange="tabChange">
+<!--菜单-->
+<swiper-item>
+  <!--侧边栏-->
+  <view class="aslide-menu">
+    <scroll-view class="aslide-box" scroll-y="true" scroll-x="false">
+      <view class="{{status==0 ? 'in' : ''}}" data-index="0" bindtap="changeMenu">推荐</view>
+      <view class="{{status==1 ? 'in' : ''}}" data-index="1" bindtap="changeMenu">粤菜</view>
+      <view class="{{status==2 ? 'in' : ''}}" data-index="2" bindtap="changeMenu">汤水</view>
+      <view class="{{status==3 ? 'in' : ''}}" data-index="3" bindtap="changeMenu">套餐</view>
+    </scroll-view>
+    <view class="aslide-content-section">
+      <scroll-view class="aslide-content" scroll-y="false" scroll-x="true" scroll-into-view="{{currentPosition}}" scroll-with-animation="true" bindscrolltolower="scrollBottom">
+        <view id="order0" class="aslide-item">
+          <text class="aslide-item-title">推荐</text>
+          <view wx:if="{{item.orderStatus == 0}}" wx:for="{{menuItems}}" wx:key="{{item.id}}" class="aslide-item-info">
+            <view class="aslide-item-img" bindtap="previewImages">
+              <image src="{{item.image.path}}"></image>
+            </view>
+            <view class="cart-info-container">
+              <text class="food-name">{{item.cookname}}</text>
+              <text class="price">￥{{item.price}}</text>
+            </view>
+          </view>
+        </view>
+
+        <view id="order1" class="aslide-item">
+          <text class="aslide-item-title">粤菜</text>
+          <view wx:if="{{item.orderStatus == 1}}" wx:for="{{menuItems}}" wx:key="{{item.id}}" class="aslide-item-info">
+            <view class="aslide-item-img" bindtap="previewImages">
+              <image src="{{item.image.path}}"></image>
+            </view>
+            <view class="cart-info-container">
+              <text class="food-name">{{item.cookname}}</text>
+              <text class="price">￥{{item.price}}</text>
+            </view>
+          </view>
+        </view>
+
+        <view id="order2" class="aslide-item">
+          <text class="aslide-item-title">汤水</text>
+          <view wx:if="{{item.orderStatus == 2}}" wx:for="{{menuItems}}" wx:key="{{item.id}}" class="aslide-item-info">
+            <view class="aslide-item-img" bindtap="previewImages">
+              <image src="{{item.image.path}}"></image>
+            </view>
+            <view class="cart-info-container">
+              <text class="food-name">{{item.cookname}}</text>
+              <text class="price">￥{{item.price}}</text>
+            </view>
+          </view>
+        </view>
+
+        <view id="order3" class="aslide-item">
+          <text class="aslide-item-title">套餐</text>
+          <view wx:if="{{item.orderStatus == 3}}" wx:for="{{menuItems}}" wx:key="{{item.id}}" class="aslide-item-info">
+            <view class="aslide-item-img" bindtap="previewImages">
+              <image src="{{item.image.path}}"></image>
+            </view>
+            <view class="cart-info-container">
+              <text class="food-name">{{item.cookname}}</text>
+              <text class="price">￥{{item.price}}</text>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+      </view>
+  </view>
+</swiper-item>
+<!--添加菜式-->
+<swiper-item style="background-color: #F8F8F8;">
+<view class="weui-cells__title" style="background-color: #F8F8F8;">菜单信息</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__bd">
+        <input class="weui-input" bindinput ="menuNameInput" placeholder="请输入菜名:"/>
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__bd">
+        <input class="weui-input" bindinput ="menuPriceInput" placeholder="请输入价格:￥"/>
+      </view>
+    </view>
+
+    <view class="weui-cells__title" style="background-color: #F8F8F8;height:25px;padding-top:10px;">菜单分类</view>
+      <view class="weui-cell weui-cell_select">
+        <view class="weui-cell__bd">
+          <picker bindchange="menuStatusChange" value="{{menuStatusIndex}}" range="{{menuStatus}}">
+            <view class="weui-select">{{menuStatus[menuStatusIndex]}}</view>
+          </picker>
+        </view>
+      </view>
+
+    <view class="weui-cells__title" style="background-color: #F8F8F8;height:25px;padding-top:10px;">选择图片</view>
+    <view class="weui-cell">
+      <view class="weui-cell__bd">
+      <view class="weui-uploader">
+        <view class="weui-uploader__hd">
+            <view class="weui-uploader__title">图片上传</view>
+            <view class="weui-uploader__info">{{files.length}}/1</view>
+        </view>
+        <view class="weui-uploader__bd">
+        <view class="weui-uploader__files" id="uploaderFiles">
+          <block wx:for="{{files}}" wx:key="*this">
+              <view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
+                  <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+              </view>
+          </block>
+        </view>
+          <view class="weui-uploader__input-box">
+            <view class="weui-uploader__input" bindtap="chooseImage"></view>
+          </view>
+        </view>
+      </view>
+      </view>
+    </view>
+  </view>
+  <view class="weui-btn-area">
+    <button class="weui-btn" type="primary" bindtap="addMenu">确定</button>
+  </view>
+</swiper-item>
+<!--删除菜单-->
+<swiper-item style="background-color: #F8F8F8;">
+<view class="addmenu_container">
+<view class="weui-cells__title" style="background-color: #F8F8F8;">菜单信息</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__bd">
+        <input class="weui-input" bindinput ="menuNameInput" placeholder="请输入菜名:"/>
+      </view>
+    </view>
+  </view>
+
+<view class="weui-cells__title" style="background-color: #F8F8F8;padding-top:5px;">菜单分类</view>
+  <view class="weui-cell weui-cell_select">
+    <view class="weui-cell__bd">
+      <picker bindchange="menuStatusChange" value="{{menuStatusIndex}}" range="{{menuStatus}}">
+        <view class="weui-select">{{menuStatus[menuStatusIndex]}}</view>
+      </picker>
+    </view>
+  </view>
+
+  <view class="weui-btn-area">
+    <button class="weui-btn" type="primary" bindtap="deleteMenu">确定</button>
+  </view>
+
+</view>
+</swiper-item>
+</swiper>
